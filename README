@@ -1,0 +1,42 @@
+A simple argument parser for Python
+
+Example usage:
+	import sys
+	import arg
+
+	def usage():
+		print('usage: %s [-v value] [-xy]' % sys.argv[0], file = sys.stderr)
+		sys.exit(1)
+
+	xflag = False
+	yflag = False
+	vflag = None
+
+	parser = arg.Parser(usage = usage)
+	for c in parser.flags:
+		if c == 'x':
+			xflag = True
+		elif c == 'y':
+			yflag = True
+		elif c == 'v':
+			vflag = parser.arg
+		else:
+			usage()
+
+Supports:
+	Short flags without arguments
+	Short flags with optionally attached arguments
+	Joined short flags
+	Long flags with optional arguments
+	Long flags with mandatory arguments
+	Long flags with mandatory attached arguments
+	Long flags with mandatory detached arguments
+	Long flags with without arguments
+	Long flags with only one dash
+	Flags not starting with a dash
+	Numeral flags
+	Stop parsing flags at --
+	Mixing flags and arguments
+	Stop parsing flags at first argument
+	Returning -- as an argument
+	Not returning -- as an argument
