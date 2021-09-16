@@ -1,22 +1,21 @@
 .POSIX:
 
-PREFIX = /usr/local
+CONFIGFILE = config.mk
+include $(CONFIGFILE)
 
-PYTHON_MAJOR = $$(python --version 2>&1 | cut -d . -f 1 | cut -d ' ' -f 2)
-PYTHON_MINOR = $$(python$(PYTHON_MAJOR) --version 2>&1 | cut -d . -f 2)
 
 all:
 	@true
 
 check:
-	python$(PYTHON_MAJOR) ./test.py
+	$(PYTHON) ./test.py
 
 install:
-	mkdir -p -- "$(DESTDIR)$(PREFIX)/lib/python$(PYTHON_MAJOR).$(PYTHON_MINOR)/site-packages"
-	cp -- arg.py "$(DESTDIR)$(PREFIX)/lib/python$(PYTHON_MAJOR).$(PYTHON_MINOR)/site-packages/"
+	mkdir -p -- "$(DESTDIR)$(PYTHONPKGDIR)"
+	cp -- arg.py "$(DESTDIR)$(PYTHONPKGDIR)/"
 
 uninstall:
-	-rm -f -- "$(DESTDIR)$(PREFIX)/lib/python$(PYTHON_MAJOR).$(PYTHON_MINOR)/site-packages/arg.py"
+	-rm -f -- "$(DESTDIR)$(PYTHONPKGDIR)/arg.py"
 
 clean:
 	-rm -rf -- *.pyc *.pyo __pycache__
