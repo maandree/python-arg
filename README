@@ -31,7 +31,7 @@ Supports:
 	Long flags with mandatory arguments
 	Long flags with mandatory attached arguments
 	Long flags with mandatory detached arguments
-	Long flags with without arguments
+	Long flags without arguments
 	Long flags with only one dash
 	Flags not starting with a dash
 	Numeral flags

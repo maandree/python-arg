@@ -45,16 +45,16 @@ class Parser(object):
 
     def __init__(self, argv = None, symbols = '-', keep_dashdash = False, store_nonflags = False, usage = None):
         '''
-        @param  argv           A list with the arguments to parse, if `None`, `sys.argv[1:]` is used
-        @param  symbols        A string or list contain the characters that will cause an argument
-                               to be parsed as being a flag, multicharacter strings will be ignored
-        @param  keep_dashdash  If `True`, `--` will be returned in `self.argv`
-        @param  keep_nonflags  During parsing, non-flag arguments are ignored, and after the last
-                               flag has been parsed, `self.argv` will have the ignored arguments at
-                               the beginning
-        @param  usage          Function (without arguments) that is to be called if parsing fails
-                               due to usage error, if `None`, `UsageError` will be raised instead
-                               on usage error
+        @param  argv            A list with the arguments to parse, if `None`, `sys.argv[1:]` is used
+        @param  symbols         A string or list containing the characters that will cause an argument
+                                to be parsed as being a flag, multicharacter strings will be ignored
+        @param  keep_dashdash   If `True`, `--` will be returned in `self.argv`
+        @param  store_nonflags  During parsing, non-flag arguments are ignored, and after the last
+                                flag has been parsed, `self.argv` will have the ignored arguments at
+                                the beginning
+        @param  usage           Function (without arguments) that is to be called if parsing fails
+                                due to usage error, if `None`, `UsageError` will be raised instead
+                                on usage error
         '''
         if argv is None:
             argv = _sys.argv[1:]
@@ -75,7 +75,7 @@ class Parser(object):
         '''
         Return a generator that returns the flags in the command line
         
-        Properties and functions in `self` can be used to after each
+        Properties and functions in `self` can be used after each
         time a flag is returned
         
         Each returned value is a single character
@@ -175,14 +175,14 @@ class Parser(object):
         Get the argument specified for the flag, can only be
         `None` (no argument) if `self.testlong` has returned
         `True` with `MAY_HAVE_ATTACHED_ARGUMENT` as the second
-        argument for the currnet flag
+        argument for the current flag
         
         Reading this property will cause the parser to assume
-        that the flag should have an argument, if these is
-        no argument UsageError will be raised (or the specified
+        that the flag should have an argument; if there is
+        no argument, UsageError will be raised (or the specified
         usage function will be called) unless `self.testlong`
         has returned `True` with `MAY_HAVE_ATTACHED_ARGUMENT`
-        as the second argument for the currnet flag
+        as the second argument for the current flag
         '''
         if self._arg is None and not self._accept_none_arg:
             self._usage()
@@ -243,7 +243,7 @@ class Parser(object):
         Check whether the current flag is specific long flag
         
         It is important to use this function, because it will
-        set the parser's state appropriately whe it finds a match
+        set the parser's state appropriately when it finds a match
         
         If the flag is the specified long flag, but its argument
         status does not match `argument`, UsageError will be raised
